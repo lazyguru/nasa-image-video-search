@@ -5,4 +5,4 @@ enum RoutePaths {
   videoSearch = '/video-search',
 }
 
-export default RoutePaths;
+export default RoutePaths

@@ -1,5 +1,5 @@
-import { createContext } from "react";
-import AppContext from "../types/AppContext";
+import { createContext } from 'react'
+import AppContext from '../types/AppContext'
 
 export default createContext<AppContext>({
   imageSearchKeywords: [],
@@ -9,5 +9,5 @@ export default createContext<AppContext>({
   },
   setVideoSearchKeywords(videoSearchKeywords) {
     return videoSearchKeywords
-  }
-});
+  },
+})

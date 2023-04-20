@@ -14,7 +14,7 @@ export default function ImageSearchPage() {
           if (link.render == 'image' && item.data[idx].media_type == 'image') {
             items.push({
               title: item.data[idx].title,
-              imgsrc: link.href,
+              imgsrc: encodeURI(link.href),
               photographer: item.data[idx].photographer,
               description: item.data[idx].description,
             } as Result)

@@ -14,7 +14,7 @@ export default function SearchPage() {
           if (link.render == 'image' && item.data[idx].media_type == 'video') {
             items.push({
               title: item.data[idx].title,
-              imgsrc: link.href,
+              imgsrc: encodeURI(link.href),
               photographer: item.data[idx].photographer,
               description: item.data[idx].description,
             } as Result)

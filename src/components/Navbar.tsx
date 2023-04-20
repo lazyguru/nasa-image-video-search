@@ -4,7 +4,7 @@ import RoutePaths from '../types/RoutePaths'
 export default function Navbar() {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-gray-500 p-6">
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
+      <div className="flex items-center flex-shrink-0 text-slate-100 mr-6">
         <span className="font-semibold text-xl tracking-tight">
           NASA Image & Video Search
         </span>

@@ -6,10 +6,10 @@ interface AppLayoutProps {
 
 export default function AppLayout({ children }: AppLayoutProps) {
   return (
-    <div className="container">
+    <div className="container text-slate-300">
       <Navbar />
       {children}
-      <footer>© Joe Constant 2023</footer>
+      <footer className="float-right">© Joe Constant 2023</footer>
     </div>
   )
 }

@@ -26,8 +26,10 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="container">
-      <h1>NASA Video Search</h1>
+    <div className="container grid place-items-stretch mt-5">
+      <div className="font-bold text-xl mb-2 text-white place-self-center">
+        NASA Video Search
+      </div>
       <Search
         filter={videoFilter}
         keywordHistory={videoSearchKeywords}

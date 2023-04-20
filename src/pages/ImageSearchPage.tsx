@@ -26,8 +26,10 @@ export default function ImageSearchPage() {
   }
 
   return (
-    <div className="container">
-      <h1>NASA Image Search</h1>
+    <div className="container grid place-items-stretch mt-5">
+      <div className="font-bold text-xl mb-2 text-white place-self-center">
+        NASA Image Search
+      </div>
       <Search
         filter={imageFilter}
         keywordHistory={imageSearchKeywords}

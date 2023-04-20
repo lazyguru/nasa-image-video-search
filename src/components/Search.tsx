@@ -40,8 +40,10 @@ export default function Search({
     if (query.trim().length == 0) {
       return
     }
-    let keywords = keywordHistory.filter((prev) => prev.value != query)
-    keywords.push({ id: Date.now(), value: query })
+    let keywords = keywordHistory.filter(
+      (prev, idx) => prev.value != query && idx < 4
+    )
+    keywords.unshift({ id: Date.now(), value: query })
     setKeywordHistory(keywords)
   }, [query])
 

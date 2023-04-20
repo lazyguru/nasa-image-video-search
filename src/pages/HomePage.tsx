@@ -1,7 +1,9 @@
 export default function HomePage() {
   return (
-    <article className="container">
-      <header>Welcome to NASA Image & Video Search site</header>
+    <article>
+      <header className="text-3xl font-bold underline">
+        Welcome to NASA Image & Video Search site
+      </header>
       <section>
         This site will allow you to search the NASA image and video archives
         based on a keyword

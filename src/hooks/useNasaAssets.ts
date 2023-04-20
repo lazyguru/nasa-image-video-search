@@ -3,16 +3,20 @@ import { Metadata, MetadataURLResponse } from '../types/MetadataResponse'
 import { Asset } from '../types/AssetResponse'
 
 export interface Meta {
-    title: string
-    description: string
-    keywords: string[]
+  title: string
+  description: string
+  keywords: string[]
 }
 
 export default function useNasaAssets() {
   const [mediaType, setMediaType] = useState('')
   const [nasaId, setNasaId] = useState('')
   const [viewUrl, setViewUrl] = useState('')
-  const [metadata, setMetadata] = useState<Meta>({title:'', description:'',keywords:[]})
+  const [metadata, setMetadata] = useState<Meta>({
+    title: '',
+    description: '',
+    keywords: [],
+  })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   useEffect(() => {
@@ -35,9 +39,7 @@ export default function useNasaAssets() {
         )
         if (metadataUrlResponse.ok) {
           const jsonURL: MetadataURLResponse = await metadataUrlResponse.json()
-          const metadataResponse = await fetch(
-            jsonURL.location
-          )
+          const metadataResponse = await fetch(jsonURL.location)
           if (metadataResponse.ok) {
             const jsonData: Metadata = await metadataResponse.json()
             const meta: Meta = {
@@ -67,6 +69,6 @@ export default function useNasaAssets() {
     metadata,
     setNasaId,
     mediaType,
-    setMediaType
-}
+    setMediaType,
+  }
 }

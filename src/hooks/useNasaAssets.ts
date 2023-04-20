@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react'
-import { Metadata } from '../types/MetadataResponse'
+import { Metadata, MetadataURLResponse } from '../types/MetadataResponse'
 import { Asset } from '../types/AssetResponse'
 
+export interface Meta {
+    title: string
+    description: string
+    keywords: string[]
+}
+
 export default function useNasaAssets() {
+  const [mediaType, setMediaType] = useState('')
   const [nasaId, setNasaId] = useState('')
   const [viewUrl, setViewUrl] = useState('')
-  const [metadata, setMetadata] = useState<Metadata[]>([])
+  const [metadata, setMetadata] = useState<Meta>({title:'', description:'',keywords:[]})
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   useEffect(() => {
@@ -23,12 +30,25 @@ export default function useNasaAssets() {
         } else {
           setError('Error getting search results from NASA')
         }
-        const metadataResponse = await fetch(
-          'https://images-api.nasa.gov/asset/' + nasaId
+        const metadataUrlResponse = await fetch(
+          'https://images-api.nasa.gov/metadata/' + nasaId
         )
-        if (metadataResponse.ok) {
-          const jsonData: Metadata = await metadataResponse.json()
-          setMetadata([jsonData])
+        if (metadataUrlResponse.ok) {
+          const jsonURL: MetadataURLResponse = await metadataUrlResponse.json()
+          const metadataResponse = await fetch(
+            jsonURL.location
+          )
+          if (metadataResponse.ok) {
+            const jsonData: Metadata = await metadataResponse.json()
+            const meta: Meta = {
+              title: jsonData['XMP:Title'] || '',
+              description: jsonData['AVAIL:Description'] || '',
+              keywords: jsonData['AVAIL:Keywords'] || [],
+            }
+            setMetadata(meta)
+          } else {
+            setError('Error getting search results from NASA')
+          }
         } else {
           setError('Error getting search results from NASA')
         }
@@ -39,12 +59,14 @@ export default function useNasaAssets() {
       setLoading(false)
     }
     getNasaMedia()
-  }, [nasaId])
+  }, [nasaId, mediaType])
   return {
     loading,
     error,
     viewUrl,
     metadata,
-    setNasaId
+    setNasaId,
+    mediaType,
+    setMediaType
 }
 }

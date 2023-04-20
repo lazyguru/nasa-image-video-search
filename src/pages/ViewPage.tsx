@@ -29,10 +29,10 @@ export default function ViewPage() {
       <div className="w-full max-w-xs place-self-center">
         <ErrorComponent message={error} />
         <Loader show={loading} />
-        {mediaType == 'image' ?? (
+        {mediaType == 'image' && (
           <ImageDisplay viewUrl={viewUrl} metadata={metadata} />
         )}
-        {mediaType == 'video' ?? (
+        {mediaType == 'video' && (
           <VideoDisplay viewUrl={viewUrl} metadata={metadata} />
         )}
       </div>

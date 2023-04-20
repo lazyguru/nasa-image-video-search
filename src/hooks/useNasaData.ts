@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Item, SearchResult } from '../types/response'
+import { Item, SearchResult } from '../types/SearchResponse'
 
 export default function useNasaData() {
   const [loading, setLoading] = useState(false)

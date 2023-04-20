@@ -4,17 +4,17 @@ import SearchResults, { Result } from '../components/SearchResults'
 import { useSearchParams } from 'react-router-dom'
 import useNasaData from '../hooks/useNasaData'
 import { useEffect } from 'react'
-import { Item } from '../types/response'
 import { Keyword } from '../types/AppContext'
+import Loader from './Loader'
 
 interface SearchProps {
-  filter(data: Item[]): Result[]
+  filterBy: string
   keywordHistory: Keyword[]
   setKeywordHistory: (cb: React.SetStateAction<Keyword[]>) => void
 }
 
 export default function Search({
-  filter,
+  filterBy,
   keywordHistory,
   setKeywordHistory,
 }: SearchProps) {
@@ -52,12 +52,10 @@ export default function Search({
       <SearchForm setQuery={setSearch} />
       <ErrorComponent message={error} />
       {loading ? (
-        <center>
-          <span className="loader"></span>
-        </center>
+        <Loader />
       ) : (
         <div>
-          <SearchResults data={nasaData} filter={filter} />
+          <SearchResults data={nasaData} filterBy={filterBy} />
         </div>
       )}
     </>

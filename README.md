@@ -15,6 +15,7 @@ App provides pages to search NASA for images or video related to a keyword
 ## API
 
 * https://images-api.nasa.gov/search (same API I used for Day 5)
+- [API Docs](https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf)
 * If you choose a Web API and not a BaaS, does the chosen Web API:
   * [X] Supports CORS
   * [ ] Requires an API Key

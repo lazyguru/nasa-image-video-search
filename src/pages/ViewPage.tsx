@@ -5,6 +5,7 @@ import useNasaAssets from '../hooks/useNasaAssets'
 import ErrorComponent from '../components/ErrorComponent'
 import Loader from '../components/Loader'
 import ImageDisplay from '../components/ImageDisplay'
+import { MediaType } from '../types/SearchResponse'
 
 export default function ViewPage() {
   const [searchParams] = useSearchParams()
@@ -25,14 +26,14 @@ export default function ViewPage() {
     setNasaId(searchParams.get('i') as string)
   }, [searchParams])
   return (
-    <div className="container grid place-items-stretch mt-5 mb-5">
-      <div className="w-full max-w-xs place-self-center">
+    <div className="grid place-items-stretch mt-5 mb-5">
+      <div className="w-full max-w-2xl place-self-center">
         <ErrorComponent message={error} />
         <Loader show={loading} />
-        {mediaType == 'image' && (
+        {mediaType == MediaType.Image && (
           <ImageDisplay viewUrl={viewUrl} metadata={metadata} />
         )}
-        {mediaType == 'video' && (
+        {mediaType == MediaType.Video && (
           <VideoDisplay viewUrl={viewUrl} metadata={metadata} />
         )}
       </div>

@@ -30,7 +30,7 @@ export default function useNasaAssets() {
         )
         if (assetRespose.ok) {
           const jsonData: Asset = await assetRespose.json()
-          setViewUrl(encodeURI(jsonData.collection.items[2].href))
+          setViewUrl(encodeURI(jsonData.collection.items[1].href))
         } else {
           setError('Error getting search results from NASA')
         }

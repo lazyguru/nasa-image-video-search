@@ -40,9 +40,9 @@ export default function SearchResults({ data, filterBy }: SearchResultsProps) {
   return (
     <>
       {items.map((item) => (
-        <div className="max-w-sm w-full lg:max-w-full lg:flex place-self-center">
+        <div className="w-full lg:max-w-full lg:flex place-self-center">
           <div
-            className="h-48 lg:h-auto lg:w-96 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+            className="h-96 w-full lg:h-48 lg:w-1/4 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-auto"
             style={{ backgroundImage: `url(${item.imgsrc})` }}
             onClick={() =>
               navigate(RoutePaths.view + '?t=' + filterBy + '&i=' + item.id)

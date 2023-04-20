@@ -21,7 +21,7 @@ export interface Item {
 export interface Datum {
   description: string
   title: string
-  photographer?: Photographer
+  photographer?: string
   location?: Location
   nasa_id: string
   date_created: string
@@ -51,10 +51,6 @@ export enum MediaType {
   Audio = 'audio',
   Image = 'image',
   Video = 'video',
-}
-
-export enum Photographer {
-  NASABillIngalls = 'NASA/Bill Ingalls',
 }
 
 export interface ItemLink {

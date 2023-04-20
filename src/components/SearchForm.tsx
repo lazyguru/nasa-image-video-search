@@ -1,11 +1,13 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 interface SearchFormProps {
   setQuery: (event: string) => void
 }
 
 export default function SearchForm({ setQuery }: SearchFormProps) {
-  const [searchTerm, setSearchTerm] = useState('mars')
+  const [searchParams] = useSearchParams()
+  const [searchTerm, setSearchTerm] = useState('')
   const formSubmitted = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setQuery(searchTerm)
@@ -13,6 +15,15 @@ export default function SearchForm({ setQuery }: SearchFormProps) {
   const newSearchTerm = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.currentTarget.value)
   }
+
+  useEffect(() => {
+    if (searchParams.has('q')) {
+      const term = searchParams.get('q') as string
+      if (term != searchTerm) {
+        setSearchTerm(term)
+      }
+    }
+  }, [searchParams])
 
   return (
     <form onSubmit={formSubmitted}>

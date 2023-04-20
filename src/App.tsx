@@ -1,25 +1,35 @@
-import useNasaData from './hooks/useNasaData'
-import SearchForm from './components/SearchForm'
-import ErrorComponent from './components/ErrorComponent'
-import SearchResults from './components/SearchResults'
+import { BrowserRouter as Router } from 'react-router-dom'
+import AppRoutes from './components/AppRoutes'
+import AppContext from './contexts/AppContext'
+import { useState } from 'react'
+import { Keyword } from './types/AppContext'
+import AppLayout from './layouts/AppLayout'
 
 function App() {
-  const { loading, error, nasaData, setQuery } = useNasaData()
   return (
-    <div className="container">
-      <h1>NASA Image Search</h1>
-      <SearchForm setQuery={setQuery} />
-      <ErrorComponent message={error} />
-      {loading ? (
-        <center>
-          <span className="loader"></span>
-        </center>
-      ) : (
-        <div>
-          <SearchResults data={nasaData} />
-        </div>
-      )}
-    </div>
+    <AppLayout>
+      <AppRoutes />
+    </AppLayout>
+  )
+}
+
+export function WrappedApp() {
+  const [imageSearchKeywords, setImageSearchKeywords] = useState<Keyword[]>([])
+  const [videoSearchKeywords, setVideoSearchKeywords] = useState<Keyword[]>([])
+
+  return (
+    <Router>
+      <AppContext.Provider
+        value={{
+          imageSearchKeywords,
+          videoSearchKeywords,
+          setImageSearchKeywords,
+          setVideoSearchKeywords,
+        }}
+      >
+        <App />
+      </AppContext.Provider>
+    </Router>
   )
 }
 

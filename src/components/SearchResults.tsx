@@ -1,31 +1,18 @@
 import { Item } from '../types/response'
 interface SearchResultsProps {
   data: Item[]
+  filter(data: Item[]): Result[]
 }
 
-interface Result {
+export interface Result {
   title: string
   imgsrc: string
   photographer: string
   description: string
 }
 
-export default function SearchResults({ data }: SearchResultsProps) {
-  const items: Result[] = []
-  data.forEach((item) => {
-    if (item.links != undefined) {
-      item.links?.map((link, idx) => {
-        if (link.render == 'image' && item.data[idx].media_type == 'image') {
-          items.push({
-            title: item.data[idx].title,
-            imgsrc: link.href,
-            photographer: item.data[idx].photographer,
-            description: item.data[idx].description,
-          } as Result)
-        }
-      })
-    }
-  })
+export default function SearchResults({ data, filter }: SearchResultsProps) {
+  const items = filter(data)
   return (
     <>
       {items.map((item) => (

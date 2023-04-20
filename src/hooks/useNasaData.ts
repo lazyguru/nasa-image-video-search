@@ -5,9 +5,12 @@ export default function useNasaData() {
   const [loading, setLoading] = useState(false)
   const [nasaData, setNasaData] = useState<Item[]>([])
   const [error, setError] = useState('')
-  const [query, setQuery] = useState('mars')
+  const [query, setQuery] = useState('')
   useEffect(() => {
     async function queryNasa(query: string) {
+      if (query.length == 0) {
+        return
+      }
       setLoading(true)
       setError('')
       setNasaData([])
@@ -34,5 +37,6 @@ export default function useNasaData() {
     error,
     nasaData,
     setQuery,
+    query,
   }
 }

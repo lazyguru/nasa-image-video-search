@@ -44,4 +44,4 @@ App provides pages to search NASA for images or video related to a keyword
 
 ## Deployment
 
-* Netlify
+- [Netlify deployed site](https://sparkling-centaur-f8e356.netlify.app/)

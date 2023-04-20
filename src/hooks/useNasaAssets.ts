@@ -43,7 +43,7 @@ export default function useNasaAssets() {
             const meta: Meta = {
               title: jsonData['XMP:Title'] || '',
               description: jsonData['AVAIL:Description'] || '',
-              keywords: jsonData['AVAIL:Keywords'] || [],
+              keywords: jsonData['AVAIL:Keywords'][0].split(',') || [],
             }
             setMetadata(meta)
           } else {

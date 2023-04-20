@@ -8,7 +8,7 @@ interface ImageDisplayProps {
 
 export default function ImageDisplay({ metadata, viewUrl }: ImageDisplayProps) {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-500">
       <img src={viewUrl} />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{metadata.title}</div>

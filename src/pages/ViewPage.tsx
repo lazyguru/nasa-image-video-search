@@ -25,15 +25,17 @@ export default function ViewPage() {
     setNasaId(searchParams.get('i') as string)
   }, [searchParams])
   return (
-    <div className="container-sm mt-5 mb-5">
-      {error && <ErrorComponent message={error} />}
-      {loading ?? <Loader />}
-      {mediaType == 'image' ?? (
-        <ImageDisplay key={Date.now()} viewUrl={viewUrl} metadata={metadata} />
-      )}
-      {mediaType == 'video' ?? (
-        <VideoDisplay key={Date.now()} viewUrl={viewUrl} metadata={metadata} />
-      )}
+    <div className="container grid place-items-stretch mt-5 mb-5">
+      <div className="w-full max-w-xs place-self-center">
+        <ErrorComponent message={error} />
+        <Loader show={loading} />
+        {mediaType == 'image' ?? (
+          <ImageDisplay viewUrl={viewUrl} metadata={metadata} />
+        )}
+        {mediaType == 'video' ?? (
+          <VideoDisplay viewUrl={viewUrl} metadata={metadata} />
+        )}
+      </div>
     </div>
   )
 }

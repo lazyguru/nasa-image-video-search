@@ -51,13 +51,8 @@ export default function Search({
     <>
       <SearchForm setQuery={setSearch} />
       <ErrorComponent message={error} />
-      {loading ? (
-        <Loader />
-      ) : (
-        <div>
-          <SearchResults data={nasaData} filterBy={filterBy} />
-        </div>
-      )}
+      <Loader show={loading} />
+      <SearchResults data={nasaData} filterBy={filterBy} />
     </>
   )
 }

@@ -3,7 +3,14 @@ interface ErrorComponentProps {
 }
 
 export default function ErrorComponent({ message }: ErrorComponentProps) {
-  return (
-    <article style={{ background: 'red', color: 'white' }}>{message}</article>
+  return message ? (
+    <article
+      className="max-w-sm w-full place-self-center"
+      style={{ background: 'red', color: 'white' }}
+    >
+      {message}
+    </article>
+  ) : (
+    <></>
   )
 }

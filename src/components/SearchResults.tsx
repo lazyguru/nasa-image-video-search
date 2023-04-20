@@ -40,7 +40,7 @@ export default function SearchResults({ data, filterBy }: SearchResultsProps) {
   return (
     <>
       {items.map((item) => (
-        <div className="max-w-sm w-full lg:max-w-full lg:flex">
+        <div className="max-w-sm w-full lg:max-w-full lg:flex place-self-center">
           <div
             className="h-48 lg:h-auto lg:w-96 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
             style={{ backgroundImage: `url(${item.imgsrc})` }}
